@@ -1,10 +1,10 @@
-import https from "https"; //const https = require("https");
-import { readFile } from "fs"; // const fs = require("fs").promises;
-import { URL } from "url"; // const { URL } = require("url");
-import parser from "fast-xml-parser"; // const parser = require("fast-xml-parser");
-import Jimp from "jimp"; // const Jimp = require("jimp");
-import core from "@actions/core"; // const core = require("@actions/core");
-import { TwitterClient } from "twitter-api-client"; // const { TwitterClient } = require("twitter-api-client");
+const https = require("https");
+const fs = require("fs").promises;
+const { URL } = require("url");
+const parser = require("fast-xml-parser");
+const Jimp = require("jimp");
+const core = require("@actions/core");
+const TwitterLite = require("twitter-lite");
 
 const TARGET_PATH = "./tmp/header.png";
 
@@ -41,7 +41,7 @@ const DRAW_IMAGES =
 
 requestLatestBlogPosts(BLOG_RSS)
   .then((latestPosts) => drawHeader(latestPosts))
-  // .then((targetPath) => uploadHeader(targetPath))
+  .then((targetPath) => uploadHeader(targetPath))
   .catch((err) => core.setFailed(err));
 
 /**
@@ -71,7 +71,7 @@ async function drawHeader(posts, targetPath = TARGET_PATH) {
     const img = await Jimp.read(src);
     image.composite(img, x, y);
   });
-	await Promise.all(promises);
+  await Promise.all(promises);
 
   image.write(targetPath);
   return targetPath;
@@ -102,12 +102,12 @@ async function requestLatestBlogPosts(rssUrl, latest = BLOG_POSTS_AMOUNT) {
  * upload locally generated image via Twitter API.
  */
 async function uploadHeader(targetPath) {
-  const client = new TwitterClient({
-    apiKey: TWITTER_API_KEY,
-    apiSecret: TWITTER_API_SECRET,
-    accessToken: TWITTER_ACCESS_TOKEN,
-    accessTokenSecret: TWITTER_ACCESS_SECRET,
+  const client = new TwitterLite({
+    consumer_key: TWITTER_API_KEY,
+    consumer_secret: TWITTER_API_SECRET,
+    access_token_key: TWITTER_ACCESS_TOKEN,
+    access_token_secret: TWITTER_ACCESS_SECRET,
   });
-  const banner = await readFile(targetPath, { encoding: "base64" });
-  return client.accountsAndUsers.accountUpdateProfileBanner({ banner });
+  const banner = await fs.readFile(targetPath, { encoding: "base64" });
+  return client.post("account/update_profile_banner", { banner })
 }
