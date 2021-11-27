@@ -2,9 +2,9 @@
   "name": "twitter-header-blog-posts-action",
   "version": "1.0.0",
   "description": "Update your Twitter header dynamically with your latest blog posts.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "esbuild index.js --bundle --platform=node --outdir=dist --minify",
+    "build": "esbuild src/index.js --bundle --platform=node --outdir=dist --minify",
     "watch": "npm run build -- --watch",
     "local-run": "node local-run.js",
     "test": "echo \"Error: no test specified\" && exit 1"
