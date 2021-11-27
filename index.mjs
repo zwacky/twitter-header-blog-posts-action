@@ -1,10 +1,10 @@
-const https = require("https");
-const fs = require("fs").promises;
-const { URL } = require("url");
-const parser = require("fast-xml-parser");
-const Jimp = require("jimp");
-const core = require("@actions/core");
-const { TwitterClient } = require("twitter-api-client");
+import https from "https"; //const https = require("https");
+import { readFile } from "fs"; // const fs = require("fs").promises;
+import { URL } from "url"; // const { URL } = require("url");
+import parser from "fast-xml-parser"; // const parser = require("fast-xml-parser");
+import Jimp from "jimp"; // const Jimp = require("jimp");
+import core from "@actions/core"; // const core = require("@actions/core");
+import { TwitterClient } from "twitter-api-client"; // const { TwitterClient } = require("twitter-api-client");
 
 const TARGET_PATH = "./tmp/header.png";
 
@@ -41,7 +41,7 @@ const DRAW_IMAGES =
 
 requestLatestBlogPosts(BLOG_RSS)
   .then((latestPosts) => drawHeader(latestPosts))
-  .then((targetPath) => uploadHeader(targetPath))
+  // .then((targetPath) => uploadHeader(targetPath))
   .catch((err) => core.setFailed(err));
 
 /**
@@ -108,6 +108,6 @@ async function uploadHeader(targetPath) {
     accessToken: TWITTER_ACCESS_TOKEN,
     accessTokenSecret: TWITTER_ACCESS_SECRET,
   });
-  const banner = await fs.readFile(targetPath, { encoding: "base64" });
+  const banner = await readFile(targetPath, { encoding: "base64" });
   return client.accountsAndUsers.accountUpdateProfileBanner({ banner });
 }
