@@ -34,9 +34,9 @@ const DRAW_TEXTS =
 const DRAW_IMAGES =
   core.getInput("DRAW_IMAGES") ||
   `[
-	["./images/underscore.png", 310, 145],
-	["./images/bullets.png", 725, 132],
-	["./images/curl.png", 505, 350]
+	["./assets/images/underscore.png", 310, 145],
+	["./assets/images/bullets.png", 725, 132],
+	["./assets/images/curl.png", 505, 350]
 ]`;
 
 requestLatestBlogPosts(BLOG_RSS)
@@ -49,8 +49,8 @@ requestLatestBlogPosts(BLOG_RSS)
  */
 async function drawHeader(posts, targetPath = TARGET_PATH) {
   const image = new Jimp(1500, 500, DRAW_BACKGROUNDCOLOR);
-  const h1 = await Jimp.loadFont("./fonts/IBMPlexSans-Bold.ttf.fnt"); // 50px
-  const p = await Jimp.loadFont("./fonts/Lato-Regular.ttf.fnt"); // 32px
+  const h1 = await Jimp.loadFont("./assets/fonts/IBMPlexSans-Bold.ttf.fnt"); // 50px
+  const p = await Jimp.loadFont("./assets/fonts/Lato-Regular.ttf.fnt"); // 32px
 
   // TEXT: print text onto image
   JSON.parse(DRAW_TEXTS).forEach((item) => {
