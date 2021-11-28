@@ -6,7 +6,7 @@ const Jimp = require("jimp");
 const core = require("@actions/core");
 const TwitterLite = require("twitter-lite");
 
-const TARGET_PATH = "./tmp/header.png";
+const TARGET_PATH = __dirname + "/tmp/header.png";
 
 // mandatory input parameters
 const TWITTER_API_KEY = core.getInput("TWITTER_API_KEY");
@@ -49,8 +49,8 @@ requestLatestBlogPosts(BLOG_RSS)
  */
 async function drawHeader(posts, targetPath = TARGET_PATH) {
   const image = new Jimp(1500, 500, DRAW_BACKGROUNDCOLOR);
-  const h1 = await Jimp.loadFont("./assets/fonts/IBMPlexSans-Bold.ttf.fnt"); // 50px
-  const p = await Jimp.loadFont("./assets/fonts/Lato-Regular.ttf.fnt"); // 32px
+  const h1 = await Jimp.loadFont(__dirname + "/assets/fonts/IBMPlexSans-Bold.ttf.fnt"); // 50px
+  const p = await Jimp.loadFont(__dirname + "/assets/fonts/Lato-Regular.ttf.fnt"); // 32px
 
   // TEXT: print text onto image
   JSON.parse(DRAW_TEXTS).forEach((item) => {
