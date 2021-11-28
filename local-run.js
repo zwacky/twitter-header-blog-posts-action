@@ -18,11 +18,6 @@ if (
   console.error(`[local-run] please check that your .env looks like this:\n\n${exampleEnvFile}`);
   return;
 }
-// prefix env variables with INPUT_ so they can be read correctly by core.getInput() in index.mjs
-process.env.INPUT_TWITTER_API_KEY = process.env.TWITTER_API_KEY;
-process.env.INPUT_TWITTER_API_SECRET = process.env.TWITTER_API_SECRET;
-process.env.INPUT_TWITTER_ACCESS_TOKEN = process.env.TWITTER_ACCESS_TOKEN;
-process.env.INPUT_TWITTER_ACCESS_SECRET = process.env.TWITTER_ACCESS_SECRET;
 // supported blog RSS feeds
 // - dev: "https://dev.to/feed/zwacky"
 // - medium: "https://medium.com/feed/@zwacky"
