@@ -68,7 +68,7 @@ async function drawHeader(posts, targetPath = TARGET_PATH) {
   // IMAGES: draw images onto image
   const promises = JSON.parse(DRAW_IMAGES).map(async (line) => {
     const [src, x, y] = line;
-    const img = await Jimp.read(src);
+    const img = await Jimp.read(src.startsWith("./") ? __dirname + src.slice(1) : src);
     image.composite(img, x, y);
   });
   await Promise.all(promises);
@@ -109,5 +109,5 @@ async function uploadHeader(targetPath) {
     access_token_secret: TWITTER_ACCESS_SECRET,
   });
   const banner = await fs.readFile(targetPath, { encoding: "base64" });
-  return client.post("account/update_profile_banner", { banner })
+  return client.post("account/update_profile_banner", { banner });
 }
