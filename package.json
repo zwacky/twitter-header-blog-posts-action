@@ -4,7 +4,7 @@
   "description": "Update your Twitter header dynamically with your latest blog posts.",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild index.js --bundle --platform=node --outdir=dist --minify",
+    "build": "esbuild index.js --bundle --platform=node --outdir=dist --minify && cp -R ./assets ./dist",
     "watch": "npm run build -- --watch",
     "local-run": "node local-run.js",
     "test": "echo \"Error: no test specified\" && exit 1"
