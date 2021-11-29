@@ -1,6 +1,6 @@
-name: "Twitter header Blog Posts Workflow"
+name: "Twitter Header with Blog Posts"
 author: "Simon Wicki"
-description: "Update your Twitter header automatically with your latest blog posts."
+description: "Automatically update your Twitter header with your latest blog posts—among arbitrary text and images."
 inputs:
   BLOG_RSS:
     description: "supported blog RSS feed url. e.g. https://dev.to/feed/zwacky, https://medium.com/feed/@zwacky, https://zwacky.hashnode.dev/rss.xml"
