@@ -11,6 +11,11 @@ export default {
     format: "cjs",
     exports: "default",
     chunkFileNames: "[name].js",
+    manualChunks(id) {
+      if (id.includes("node_modules")) {
+        return "vendor";
+      }
+    },
   },
   plugins: [
     resolve({ preferBuiltins: true }),

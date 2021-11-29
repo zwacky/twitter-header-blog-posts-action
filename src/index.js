@@ -4,7 +4,6 @@ const fs = require("fs").promises;
 const parser = require("fast-xml-parser");
 const core = require("@actions/core");
 const TwitterLite = require("twitter-lite");
-// const { createCanvas, loadImage, registerFont } = require("canvas");
 
 const TARGET_PATH = __dirname + "/../tmp/header.png";
 
