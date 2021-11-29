@@ -28,21 +28,20 @@
   },
   "homepage": "https://github.com/zwacky/twitter-header-blog-posts-action#readme",
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@rollup/plugin-babel": "^5.3.0",
+    "@babel/core": "7.16.0",
+    "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "22.0.0-0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.6",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.60.1",
-    "rollup-plugin-terser": "^7.0.2"
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.0.6",
+    "rimraf": "3.0.2",
+    "rollup": "2.60.1",
+    "rollup-plugin-terser": "7.0.2"
   },
   "dependencies": {
-    "@actions/core": "^1.6.0",
-    "dotenv": "^10.0.0",
-    "esbuild": "^0.13.15",
-    "fast-xml-parser": "^3.21.1",
-    "jimp": "^0.16.1",
-    "twitter-lite": "^1.1.0"
+    "@actions/core": "1.6.0",
+    "dotenv": "10.0.0",
+    "fast-xml-parser": "3.21.1",
+    "jimp": "0.16.1",
+    "twitter-lite": "1.1.0"
   }
 }
