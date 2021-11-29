@@ -50,7 +50,7 @@ Here are all the inputs you can change in your `twitter-header-blog-posts-workfl
 
 | Option | Default Value | Description | Required |
 |--------|--------|--------|--------|
-| BLOG_RSS | "" | Your blog RSS url.<br><br>Supported blog platforms with example:<br><br><ul><li>Dev.to: https://dev.to/feed/zwacky</li><li>Medium: https://medium.com/feed/@zwacky</li><li>https://zwacky.hashnode.dev/rss.xml</li></ul> | Yes |
+| BLOG_RSS | "" | Your blog RSS url.<br><br>Supported blog platforms with example:<br><br><ul><li>Dev.to: https://dev.to/feed/zwacky</li><li>Medium: https://medium.com/feed/@zwacky</li><li>Hashnode: https://zwacky.hashnode.dev/rss.xml</li></ul> | Yes |
 | MAX_TEXT_LENGTH | "40" | Max length of blog post title before it gets cut off with an ellipsis (...) | No |
 | BLOG_POSTS_AMOUNT | "3" | How many latest blog post titles are drawn | No |
 | DRAW_BLOGTITLES_X | "835" | X coordinate where blog post titles are drawn | No |
