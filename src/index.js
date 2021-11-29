@@ -1,12 +1,12 @@
 const https = require("https");
-const fs = require("fs").promises;
 const { URL } = require("url");
+const fs = require("fs").promises;
 const parser = require("fast-xml-parser");
-const Jimp = require("jimp");
 const core = require("@actions/core");
 const TwitterLite = require("twitter-lite");
+// const { createCanvas, loadImage, registerFont } = require("canvas");
 
-const TARGET_PATH = __dirname + "/tmp/header.png";
+const TARGET_PATH = __dirname + "/../tmp/header.png";
 
 // mandatory input parameters
 const TWITTER_API_KEY = process.env.TWITTER_API_KEY;
@@ -48,9 +48,11 @@ requestLatestBlogPosts(BLOG_RSS)
  * edits the header template with the latest posts and saves it back locally.
  */
 async function drawHeader(posts, targetPath = TARGET_PATH) {
+  // dynamic impo
+  const { default: Jimp } = await import("Jimp");
   const image = new Jimp(1500, 500, DRAW_BACKGROUNDCOLOR);
-  const h1 = await Jimp.loadFont(__dirname + "/assets/fonts/IBMPlexSans-Bold.ttf.fnt"); // 50px
-  const p = await Jimp.loadFont(__dirname + "/assets/fonts/Lato-Regular.ttf.fnt"); // 32px
+  const h1 = await Jimp.loadFont(__dirname + "/../assets/fonts/IBMPlexSans-Bold.ttf.fnt"); // 50px
+  const p = await Jimp.loadFont(__dirname + "/../assets/fonts/Lato-Regular.ttf.fnt"); // 32px
 
   // TEXT: print text onto image
   JSON.parse(DRAW_TEXTS).forEach((item) => {
@@ -68,7 +70,7 @@ async function drawHeader(posts, targetPath = TARGET_PATH) {
   // IMAGES: draw images onto image
   const promises = JSON.parse(DRAW_IMAGES).map(async (line) => {
     const [src, x, y] = line;
-    const img = await Jimp.read(src.startsWith("./") ? __dirname + src.slice(1) : src);
+    const img = await Jimp.read(src.startsWith("./") ? `${__dirname}/../${src.slice(1)}` : src);
     image.composite(img, x, y);
   });
   await Promise.all(promises);
@@ -108,6 +110,7 @@ async function uploadHeader(targetPath) {
     access_token_key: TWITTER_ACCESS_TOKEN,
     access_token_secret: TWITTER_ACCESS_SECRET,
   });
-  const banner = await fs.readFile(targetPath, { encoding: "base64" });
+  const data = await fs.readFile(targetPath);
+  const banner = Buffer.from(data).toString("base64");
   return client.post("account/update_profile_banner", { banner });
 }

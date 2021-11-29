@@ -29,4 +29,4 @@ process.env.DRAW_IMAGES = `[
 	["./assets/curl.ppng", 505, 350]
 ]`;
 
-require("./index.js");
+require("./src/index.js");
