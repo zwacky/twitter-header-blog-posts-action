@@ -1,6 +1,6 @@
 # Twitter header blog posts action
 
-Automatically update your Twitter header with your latest blog posts—along with arbitrary text and images.
+Automatically update your Twitter header with your latest blog posts—among arbitrary text and images.
 
 ![twitter-header-uploader-v1](https://user-images.githubusercontent.com/1093032/143890106-3bd64985-c962-49f1-8dbf-014a53971fae.png)
 
