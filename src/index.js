@@ -86,9 +86,10 @@ async function requestLatestBlogPosts(rssUrl, latest = BLOG_POSTS_AMOUNT) {
     throw "no valid BLOG_RSS";
   }
   const { host, pathname: path } = new URL(rssUrl);
+  const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko)";
   const result = await new Promise((resolve, reject) => {
     https
-      .request({ host, path }, (response) => {
+      .request({ host, path, headers: { "User-Agent": userAgent } }, (response) => {
         let data = "";
         response.on("data", (chunk) => (data += chunk));
         response.on("end", () => resolve(parser.parse(data)));
